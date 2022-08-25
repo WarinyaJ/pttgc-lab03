@@ -17,6 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build an image from Dockerfile for ${{ env.service }} microservices
+      - name: Build an image from Dockerfile for ${{ env.SERVICE }} microservices
         run: |
-          docker build . --file Dockerfile --tag ${{ env.repository }}:${{ env.tag }}
+          docker build . --file Dockerfile --tag ${{ env.REPOSITORY }}:${{ env.TAG }}
