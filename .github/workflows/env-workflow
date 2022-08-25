@@ -1,15 +1,20 @@
-import os
+name: Environment variables workflow
 
-token = os.environ['TOKEN']
-print(f'The token retrieved is {token}')
-
-if token == "aaa":
-    print("The TOKEN retrieved from production environment")
-elif token == "bbb":
-    print("The TOKEN retrieved from dev environment")
-elif token == "ccc":
-    print("The TOKEN retrieved from repo secrets")
-elif token == "ddd":
-    print("The TOKEN retrieved from organization secrets")
-else:
-    print("The TOKEN doesn't exist")
+on: 
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+    
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    #this is how to tell GitHub Action workflow to use secrets from environment secret
+    environment: production 
+    env:
+      TOKEN: ${{ secrets.TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: validate
+        run: python validate.py
