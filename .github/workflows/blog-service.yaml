@@ -6,7 +6,7 @@ on:
 
 env:
   ## Sets environment variable
-  REPOSITORY: ${{ github.repository }}
+  REPOSITORY: test-warinyaj
   SERVICE: demo
   TAG: ${{ github.sha }}
 
